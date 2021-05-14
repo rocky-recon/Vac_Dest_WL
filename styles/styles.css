@@ -53,3 +53,10 @@ form {
   /* The initial border was to ensure pictures stay in the appropriate container */
   /* border: 1px solid red; */
 }
+.yourcard {
+  margin: 10px;
+}
+.outter_container {
+  height: 90%;
+  overflow-y: scroll;
+}
