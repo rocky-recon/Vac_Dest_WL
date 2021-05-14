@@ -29,10 +29,10 @@ function handleFormSubmit(event) {
   //   Nelly, if you are reading this, I was only able to work on this document this morning. I will continue to refine this webpage over the weekend.
 
   dest_card.innerHTML = `<img src=${photo} class="card-img-top" alt=${destination}|${location}>
-    <div class="card-body">
-      <h5 class="card-title">${destination}</h5>
+    <div class="dest_card-body">
+      <h5 class="dest_card-title">${destination}</h5>
       <h6>${location}</h6>
-      <p class="card-text">${description}</p>
+      <p class="dest_card-text">${description}</p>
       <a href="#" btn_type="edit_btn" class="btn btn-warning">Edit</a>
       <a href="#" btn_type="delete_btn" class="btn btn-danger">Delete</a>
     </div>
