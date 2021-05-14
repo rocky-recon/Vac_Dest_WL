@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font link -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- My CSS file  -->
+    <link rel="stylesheet" href="./styles/styles.css" />
+
+    <!-- Title here is the title of the webpage -->
+    <title>Vacation Destinations WishList</title>
+  </head>
+
+  <!-- Body needs to have a shortcut to Colorzilla as an extension/add-on. Reference: https://twitter.com/brianpemberton/status/201455628143689728  -->
+  <body cz-shortcut-listen="true">
+    <!-- Title of the page needs to be in the center and container in order to leave no white space on the webpage -->
+    <div class="text-center" id="title_para_container">
+      <h1>Vacation Destination WishList</h1>
+      <p>Store your vacation destination wishlist</p>
+    </div>
+    <div id="main_container">
+      <div class="panel container" id="form_container">
+        <form id="myForm">
+          <label for="destination">Destination name</label>
+          <input
+            required
+            minlength="2"
+            type="text"
+            id="destination"
+            placeholder="Enter the name of the destination"
+          />
+          <label for="location">Location</label>
+          <input
+            required
+            minlength="2"
+            type="text"
+            id="location"
+            placeholder="Where is it located"
+          />
+          <label for="photo">Photo</label>
+          <input type="text" id="photo" placeholder="Enter image URL here" />
+          <label for="desc">Description</label>
+          <input
+            required
+            minlength="2"
+            type="text"
+            id="name"
+            placeholder="Description"
+          />
+
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+
+      <div class="panel container" id="wish_container">
+        <p id="title">Enter Destination Details</p>
+        <div class="outter_container">
+          <div id="list"></div>
+        </div>
+      </div>
+    </div>
+    <!-- My Javascript file -->
+    <script src="./script.js"></script>
+  </body>
+</html>

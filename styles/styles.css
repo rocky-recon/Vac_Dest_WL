@@ -1,0 +1,55 @@
+html,
+body {
+  height: 100%;
+  font-style: "Roboto", sans-serif;
+}
+
+#main_container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(194, 221, 195);
+}
+
+.panel {
+  margin: 20px;
+  width: 50%;
+  height: 100%;
+}
+#title_para_container {
+  width: 100vw;
+  height: 10vh;
+  background-color: mediumslateblue;
+}
+
+#form_container {
+  position: sticky;
+  top: 0;
+  background-color: rgb(105, 213, 255);
+}
+
+#wish_container {
+  background: rgb(194, 30, 126);
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+/* The title text needs to be in the center */
+#title {
+  text-align: center;
+}
+/*  The width is 100 percent on the list to take up the actual space provided.
+    Flex & Flex-wrap is to collect multiple variables appropriately instead of expanding the actual webpage.
+    We always need the content in the center. 
+     */
+#list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* The initial border was to ensure pictures stay in the appropriate container */
+  /* border: 1px solid red; */
+}
