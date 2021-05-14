@@ -26,6 +26,8 @@ function handleFormSubmit(event) {
   dest_card.classList.add("dest_card", "yourCard");
   dest_card.style.width = "18rem";
 
+  //   Nelly, if you are reading this, I was only able to work on this document this morning. I will continue to refine this webpage over the weekend.
+
   dest_card.innerHTML = `<img src=${photo} class="card-img-top" alt=${destination}|${location}>
     <div class="card-body">
       <h5 class="card-title">${destination}</h5>
