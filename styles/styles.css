@@ -8,7 +8,7 @@ body {
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(194, 221, 195);
+  background-image: url("https://images.unsplash.com/photo-1608718480168-fb5a0e1fd1c2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
 }
 
 .panel {
@@ -19,17 +19,17 @@ body {
 #title_para_container {
   width: 100vw;
   height: 10vh;
-  background-color: mediumslateblue;
+  background-image: url("https://images.unsplash.com/photo-1545236303-8642771cc1bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80");
 }
 
 #form_container {
   position: sticky;
   top: 0;
-  background-color: rgb(105, 213, 255);
+  background-image: url("https://images.unsplash.com/photo-1545236303-8642771cc1bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80");
 }
 
 #wish_container {
-  background: rgb(194, 30, 126);
+  background-image: url("https://images.unsplash.com/photo-1545236303-8642771cc1bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80S");
   padding: 20px;
 }
 
