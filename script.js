@@ -35,7 +35,7 @@ function handleFormSubmit(event) {
   //   Nelly, if you are reading this, I was only able to work on this document this morning. I will continue to refine this webpage over the weekend.
 
   //
-  card.innerHTML = `<img src=${photo} class="card-img-top" alt=${destinationName}|${destinationLocation}>
+  card.innerHTML = `<img src=${destinationPhoto} class="card-img-top" alt=${destinationName}|${destinationLocation}>
     <div class="card-body">
       <h5 class="card-title">${destinationName}</h5>
       <h6>${destinationLocation}</h6>
