@@ -1,3 +1,6 @@
+// this calls a function
+usa();
+
 // Listen to the form being submitted
 document
   .getElementById("myBtn")
@@ -21,51 +24,71 @@ function handleUnsplashButton(event) {
   handleSubmit();
 }
 
-function handleSubmit(event) {
-  // event.preventDefault();
-
-  const userInputDestination = document.getElementById("destination").value;
-  const userInputLocation = document.getElementById("location").value;
-  const userInputDescription = document.getElementById("description").value;
-  let url = `https://api.unsplash.com/search/photos?client_id=pIUUYn0Gfen6hujUezLUCh-ttRVUN1OYVOJ-iuw8wDw&query= ${userInputDestination}&& ${userInputLocation}&& ${userInputDescription} 
-   `;
-  // userInputDestination +
-  // userInputLocation +
-  // userInputDescription +
+//  function
+function usa() {
+  let url = `https://unsplashdemo90.herokuapp.com/destinations`;
+  console.log(url);
   fetch(url)
     .then((response) => response.json())
-    .then((pictures) => addUnsplashphotos(pictures.results));
-}
-function addUnsplashphotos(pictures) {
-  const random = Math.floor(Math.random() * pictures.length);
-
-  const photoURL = pictures[random].urls.thumb;
-
-  const userInputDestination = document.getElementById("destination").value;
-  const userInputLocation = document.getElementById("location").value;
-  const userInputDescription = document.getElementById("description").value;
-
-  const card = document.createElement("div");
-  card.classList.add("card");
-  card.setAttribute("style", "width: 18rem");
-
-  //   Nelly, if you are reading this, I was only able to work on this document this morning. I will continue to refine this webpage over the weekend.
-
-  //
-  card.innerHTML = `<div class="card-body">
-  <img class="card-img-top" src=${photoURL}>
-      <h5 class="card-title">${userInputDestination}</h5>
-      <h6>${userInputLocation}</h6>
-      <p class="card-text">${userInputDescription}</p>
+    .then((destDataBase) => {
+      console.log(destDataBase);
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.setAttribute("style", "width: 18rem");
+      card.innerHTML = `<div class="card-body">
+  <img class="card-img-top" src=${destDataBase[0].photo}}>
+      <h5 class="card-title">${destDataBase[0].name}</h5>
+      <h6>${destDataBase[0].location}</h6>
+      <p class="card-text">${destDataBase[0].description}</p>
       <a href="#" btn_type="edit_btn" class="btn btn-warning">Edit</a>
       <a href="#" btn_type="delete_btn" class="btn btn-danger">Delete</a>
     </div>
   `;
 
-  document.getElementById("card_Container").appendChild(card);
+      document.getElementById("card_Container").appendChild(card);
 
-  resetFormValues();
+      resetFormValues();
+    });
 }
+
+function handleSubmit(event) {
+  // event.preventDefault();
+  // const userInputDestination = document.getElementById("destination").value;
+  // const userInputLocation = document.getElementById("location").value;
+  // const userInputDescription = document.getElementById("description").value;
+  // let url = `https://api.unsplash.com/search/photos?client_id=pIUUYn0Gfen6hujUezLUCh-ttRVUN1OYVOJ-iuw8wDw&query= ${userInputDestination}&& ${userInputLocation}&& ${userInputDescription}
+  //  `;
+}
+// function addUnsplashphotos(pictures) {
+//   const random = Math.floor(Math.random() * pictures.length);
+
+//   const photoURL = pictures[random].urls.thumb;
+
+//   const userInputDestination = document.getElementById("destination").value;
+//   const userInputLocation = document.getElementById("location").value;
+//   const userInputDescription = document.getElementById("description").value;
+
+//   const card = document.createElement("div");
+//   card.classList.add("card");
+//   card.setAttribute("style", "width: 18rem");
+
+//   Nelly, if you are reading this, I was only able to work on this document this morning. I will continue to refine this webpage over the weekend.
+
+//
+//   card.innerHTML = `<div class="card-body">
+//   <img class="card-img-top" src=${photoURL}>
+//       <h5 class="card-title">${userInputDestination}</h5>
+//       <h6>${userInputLocation}</h6>
+//       <p class="card-text">${userInputDescription}</p>
+//       <a href="#" btn_type="edit_btn" class="btn btn-warning">Edit</a>
+//       <a href="#" btn_type="delete_btn" class="btn btn-danger">Delete</a>
+//     </div>
+//   `;
+
+//   document.getElementById("card_Container").appendChild(card);
+
+//   resetFormValues();
+// }
 
 function resetFormValues() {
   document.getElementById("destination").value = "";
