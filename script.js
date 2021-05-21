@@ -24,8 +24,6 @@ function usa() {
 `;
         document.getElementById("card_Container").appendChild(card);
       }
-
-      // resetFormValues();
     });
 }
 
