@@ -18,8 +18,8 @@ function usa() {
   <img class="card-img-top" src=${destDataBase[index].photo}}>
       <h6>${destDataBase[index].location}</h6>
       <p class="card-text">${destDataBase[index].description}</p>
-      <a href="#" btn_type="edit_btn" class="btn btn-warning">Edit</a>
-      <a href="#" btn_type="delete_btn" class="btn btn-danger">Delete</a>
+      <a href="#" btn_type="edit_btn" class="btn btn-warning" uniqueID="${destDataBase[index].id} ">Edit</a>
+      <a href="#" btn_type="delete_btn" class="btn btn-danger" uniqueID= "${destDataBase[index].id} ">Delete</a>
     </div>
 `;
         document.getElementById("card_Container").appendChild(card);
@@ -42,6 +42,44 @@ function handleFormSubmit(event) {
   const destinationDescription = document.getElementById("description").value;
 
   fetch(`https://unsplashdemo90.herokuapp.com/destinations`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      destination: destinationName,
+      location: destinationLocation,
+      description: destinationDescription,
+    }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      location.reload();
+    });
+}
+
+document
+  .getElementById("card_Container")
+  .addEventListener("click", handleClick);
+
+// function handleSubmit(event) {
+function handleClick(hCEvent) {
+  const event = hCEvent.target;
+
+  if (event.getAttribute("btn_type") === "delete_btn") {
+    deleteCard(hCEvent);
+  } else if (event.getAttribute("btn_type") === "edit_btn") {
+    handleEdit(hCEvent);
+  }
+}
+// }
+
+function deleteCard() {
+  // const event = dCEvent.target;
+  // event.parentElement.parentElement.remove();
+  fetch(`https://unsplashdemo90.herokuapp.com/destinations`, {
     method: "Post",
     headers: {
       "Content-Type": "application/json",
@@ -58,40 +96,6 @@ function handleFormSubmit(event) {
     .then((data) => {
       location.reload();
     });
-}
-
-// function handleUnsplashButton(event) {
-
-//   // let queryParameter = element.parentElement.search.value;
-
-//   console.log(destinationName, destinationLocation, destinationDescription);
-//   //resets form to allow new entry
-//   // resetFormValues();
-//   handleSubmit();
-// }
-
-function handleSubmit(event) {
-  function resetFormValues() {
-    document.getElementById("destination").value = "";
-    document.getElementById("location").value = "";
-    // document.getElementById("photo").value = "";
-    document.getElementById("description").value = "";
-  }
-
-  function handleClick(hCEvent) {
-    const event = hCEvent.target;
-
-    if (event.getAttribute("btn_type") === "delete_btn") {
-      deleteCard(hCEvent);
-    } else if (event.getAttribute("btn_type") === "edit_btn") {
-      handleEdit(hCEvent);
-    }
-  }
-
-  function deleteCard(dCEvent) {
-    const event = dCEvent.target;
-    event.parentElement.parentElement.remove();
-  }
 
   function handleEdit(hEdit) {
     const event = hEdit.target;
@@ -123,6 +127,12 @@ function handleSubmit(event) {
       oldDesc.innerText = newDesc;
     }
 
+    function resetFormValues() {
+      document.getElementById("destination").value = "";
+      document.getElementById("location").value = "";
+      // document.getElementById("photo").value = "";
+      document.getElementById("description").value = "";
+    }
     // function createURL(queryParameter) {
     //   let finalQueryParameter = "";
     //   if (finalQueryParameter.length === queryParameter.length) {
