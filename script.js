@@ -32,6 +32,7 @@ document.getElementById("myBtn").addEventListener("click", handleFormSubmit);
 
 // // Function needs to handle myForm being submitted
 function handleFormSubmit(event) {
+  console.log("submitted");
   //   // Stops the form from refreshing the page
   event.preventDefault();
   //   // Grab the values from form_container and storing them in wish_container
@@ -45,7 +46,7 @@ function handleFormSubmit(event) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      destination: destinationName,
+      name: destinationName,
       location: destinationLocation,
       description: destinationDescription,
     }),
