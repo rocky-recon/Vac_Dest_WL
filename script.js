@@ -1,45 +1,62 @@
 // Listen to the form being submitted
-document.querySelector("#myForm").addEventListener("submit", handleFormSubmit);
+document
+  .getElementById("myBtn")
+  .addEventListener("click", handleUnsplashButton);
 
 // Function needs to handle myForm being submitted
-function handleFormSubmit(event) {
+// function handleFormSubmit(event)
+function handleUnsplashButton(event) {
   // Stops the form from refreshing the page
   event.preventDefault();
-  const form = event.target;
+  // let queryParameter = element.parentElement.search.value;
 
   // Grab the values from form_container and storing them in wish_container
-  const destinationName = form.destination.value;
-  const destinationLocation = form.location.value;
-  let destinationPhoto = form.photo.value === "";
-  //   Need to have a default photo if user fails to provide one
-  // Get the picture from Unsplash API
-  // my code goes here
+  const destinationName = document.getElementById("destination").value;
+  const destinationLocation = document.getElementById("location").value;
+  const destinationDescription = document.getElementById("description").value;
 
-  if (destinationPhoto === "") {
-    photo =
-      "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
-  }
-  const destinationDescription = form.description.value;
-
+  console.log(destinationName, destinationLocation, destinationDescription);
   //resets form to allow new entry
-  resetFormValues();
+  // resetFormValues();
+  handleSubmit();
+}
 
-  //  By creating a new p tag for destination* and adding it to div#list will allow you to make it look approachable
+function handleSubmit(event) {
+  // event.preventDefault();
 
-  // const dest_container = document.getElementById("list");
+  const userInputDestination = document.getElementById("destination").value;
+  const userInputLocation = document.getElementById("location").value;
+  const userInputDescription = document.getElementById("description").value;
+  let url = `https://api.unsplash.com/search/photos?client_id=pIUUYn0Gfen6hujUezLUCh-ttRVUN1OYVOJ-iuw8wDw&query= ${userInputDestination}&& ${userInputLocation}&& ${userInputDescription} 
+   `;
+  // userInputDestination +
+  // userInputLocation +
+  // userInputDescription +
+  fetch(url)
+    .then((response) => response.json())
+    .then((pictures) => addUnsplashphotos(pictures.results));
+}
+function addUnsplashphotos(pictures) {
+  const random = Math.floor(Math.random() * pictures.length);
+
+  const photoURL = pictures[random].urls.thumb;
+
+  const userInputDestination = document.getElementById("destination").value;
+  const userInputLocation = document.getElementById("location").value;
+  const userInputDescription = document.getElementById("description").value;
 
   const card = document.createElement("div");
-  card.setAttribute("class", "dest_ard");
+  card.classList.add("card");
   card.setAttribute("style", "width: 18rem");
 
   //   Nelly, if you are reading this, I was only able to work on this document this morning. I will continue to refine this webpage over the weekend.
 
   //
-  card.innerHTML = `<img src=${destinationPhoto} class="card-img-top" alt=${destinationName}|${destinationLocation}>
-    <div class="card-body">
-      <h5 class="card-title">${destinationName}</h5>
-      <h6>${destinationLocation}</h6>
-      <p class="card-text">${destinationDescription}</p>
+  card.innerHTML = `<div class="card-body">
+  <img class="card-img-top" src=${photoURL}>
+      <h5 class="card-title">${userInputDestination}</h5>
+      <h6>${userInputLocation}</h6>
+      <p class="card-text">${userInputDescription}</p>
       <a href="#" btn_type="edit_btn" class="btn btn-warning">Edit</a>
       <a href="#" btn_type="delete_btn" class="btn btn-danger">Delete</a>
     </div>
@@ -47,16 +64,13 @@ function handleFormSubmit(event) {
 
   document.getElementById("card_Container").appendChild(card);
 
-  card.addEventListener("click", handleClick);
-
-  document.getElementById("title").innnterText = "Wishlist";
-  resetFormValues(event);
+  resetFormValues();
 }
 
 function resetFormValues() {
   document.getElementById("destination").value = "";
   document.getElementById("location").value = "";
-  document.getElementById("photo").value = "";
+  // document.getElementById("photo").value = "";
   document.getElementById("description").value = "";
 }
 
@@ -104,4 +118,31 @@ function handleEdit(hEdit) {
   if (newDesc !== "") {
     oldDesc.innerText = newDesc;
   }
+
+  // function createURL(queryParameter) {
+  //   let finalQueryParameter = "";
+  //   if (finalQueryParameter.length === queryParameter.length) {
+  //     resetSearchInputPlaceholderforEmptyString();
+  //     return;
+  //   }
+
+  //   for (let index of queryParameter) {
+  //     if (index === " ") {
+  //       index = "-";
+  //       finalQueryParameter += index;
+  //     } else {
+  //       finalQueryParameter += index;
+  //     }
+  //   }
+  //   const URL = `https://api.unsplash.com/search/photos?query=${finalQueryParameter}&id_client=iLxWwy7a-A_s0refRv7yMaLVrR38MXGU5Nbnzbbxhx8`;
+  // }
 }
+// let destinationPhoto = form.photo.value === "";
+//   Need to have a default photo if user fails to provide one
+// Get the picture from Unsplash API
+// my code goes here
+
+// if (destinationPhoto === "") {
+//   photo =
+//     "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
+// }
