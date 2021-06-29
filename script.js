@@ -79,12 +79,12 @@ function deleteCard() {
   // const event = dCEvent.target;
   // event.parentElement.parentElement.remove();
   fetch(`https://unsplashdemo90.herokuapp.com/destinations`, {
-    method: "Post",
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringfy({
-      destination: destinationName,
+      name: destinationName,
       location: destinationLocation,
       description: destinationDescription,
     }),
@@ -100,15 +100,32 @@ function deleteCard() {
     const event = hEdit.target;
     const cardBody = event.parentElement.children;
 
-    const oldDest = cardBody[0];
-    const oldLoc = cardBody[1];
-    const oldDesc = cardBody[2];
-    const oldPhoto = event.parentElement.parentElement.children[0];
+    // const oldDest = cardBody[0];
+    // const oldLoc = cardBody[1];
+    // const oldDesc = cardBody[2];
+    // const oldPhoto = event.parentElement.parentElement.children[0];
 
     const newDest = prompt("New Destination", oldDest.innerText);
     const newLoc = prompt("New Location", oldLoc.innerText);
     const newPhoto = prompt("New Photo", oldPhoto.getAttribute("src"));
     const newDesc = prompt("New Description", oldDesc.innerText);
+    fetch(`https://unsplashdemo90.herokuapp.com/destinations`, {
+      method: "Edit",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringfy({
+        name: newDest,
+        location: newLoc,
+        description: newDesc,
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        location.reload();
+      });
 
     if (newDest !== "") {
       oldDest.innerText = newDest;
